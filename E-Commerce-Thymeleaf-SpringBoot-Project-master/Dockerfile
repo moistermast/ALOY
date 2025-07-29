@@ -1,11 +1,10 @@
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# Copy only what we need
-COPY pom.xml ./
-COPY src ./src
+# Copy from the nested project directory
+COPY E-Commerce-Thymeleaf-SpringBoot-Project-master/pom.xml ./
+COPY E-Commerce-Thymeleaf-SpringBoot-Project-master/src ./src
 
-# Build the application
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:21-jre
